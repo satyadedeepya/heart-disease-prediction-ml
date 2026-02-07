@@ -21,13 +21,13 @@ model_lr= LogisticRegression(max_iter=1000)
 
 model_lr.fit(X_train,y_train)
 
-y_pred_lr=model_lr.predict(X_test)
+y_pred_lr=model_lr.predict(X_test_scaled)
 
 from sklearn.metrics import accuracy_score,confusion_matrix
 
 print("Accuracy: ",accuracy_score(y_test,y_pred_lr))
 print("Confusion Matrix:")
-print(confusion_matrix(y_test,y_pred_lr))
+print(confusion_matrix(y_test,y_pred_lr,labels=[0,1]))
 
 # ONE-SENTENCE GOLD RULE (MEMORIZE)
 
@@ -70,5 +70,4 @@ print("LR Precision: ",precision_score(y_test,y_pred_lr)) #sickk ppl were actual
 
 print("KNN Recall:", recall_score(y_test, y_pred_knn))
 print("KNN Precision:", precision_score(y_test, y_pred_knn))
-
 
