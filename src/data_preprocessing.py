@@ -76,7 +76,8 @@ y = df['target']
 print("\nFeature shape:", X.shape)
 print("Target shape:", y.shape)
 
+# Save cleaned dataset
+df.to_csv("data/heart_large_cleaned.csv", index=False)
 
-
-
+print("\nCleaned dataset saved successfully.")
 
