@@ -5,6 +5,7 @@ import joblib
 import os
 import plotly.graph_objects as go
 
+df = pd.read_csv(os.path.join(base_dir, "data", "heart_large_cleaned.csv"))
 # ======================
 # PAGE CONFIG
 # ======================
@@ -74,17 +75,39 @@ with st.container():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        age = st.slider("Age", 20, 80, 50)
+        age = st.slider("Age", 0, 100, 50)
+
+        if age < 29:
+            st.info("Model trained on adult population (29+). Interpret results cautiously.")
+        elif age > 80:
+            st.info("Very high age values may be underrepresented in training data.")
         sex = st.selectbox("Sex", ["Male", "Female"])
-        trestbps = st.slider("Resting BP", 80, 200, 120)
+        trestbps = st.slider("Resting BP",
+            int(df.trestbps.min()),
+            int(df.trestbps.max()),
+            int(df.trestbps.median())
+        )
 
     with col2:
-        chol = st.slider("Cholesterol", 100, 600, 200)
-        thalch = st.slider("Max Heart Rate", 60, 220, 150)
-        oldpeak = st.slider("Oldpeak", 0.0, 6.0, 1.0)
+        chol = st.slider("Cholesterol",
+            int(df.chol.min()),
+            int(df.chol.max()),
+            int(df.chol.median())
+        )
+        thalch = st.slider("Max Heart Rate",
+            int(df.thalch.min()),
+            int(df.thalch.max()),
+            int(df.thalch.median())
+        )
+        oldpeak = st.slider("Oldpeak",
+            float(df.oldpeak.min()),
+            float(df.oldpeak.max()),
+            float(df.oldpeak.median())
+        )
 
     with col3:
-        fbs = st.selectbox("Fasting Blood Sugar", [0, 1])
+        fbs = st.selectbox("Fasting Blood Sugar >120", ["No", "Yes"])
+        fbs = 1 if fbs == "Yes" else 0
         exang = st.selectbox("Exercise Angina", [0, 1])
         slope = st.selectbox("Slope", ["flat", "upsloping"])
 

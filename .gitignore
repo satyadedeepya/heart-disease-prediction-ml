@@ -6,9 +6,6 @@ __pycache__/
 data/
 *.csv
 
-# Model artifacts
-model/
-*.pkl
 
 # Python env
 venv/
