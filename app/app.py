@@ -5,7 +5,7 @@ import joblib
 import os
 import plotly.graph_objects as go
 
-df = pd.read_csv(os.path.join(base_dir, "data", "heart_large_cleaned.csv"))
+
 # ======================
 # PAGE CONFIG
 # ======================
@@ -19,7 +19,7 @@ st.set_page_config(
 # LOAD MODEL
 # ======================
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+df = pd.read_csv(os.path.join(base_dir, "data", "heart_large_cleaned.csv"))
 model = joblib.load(os.path.join(base_dir, "model", "lr_model.pkl"))
 scaler = joblib.load(os.path.join(base_dir, "model", "scaler.pkl"))
 feature_names = joblib.load(os.path.join(base_dir, "model", "features.pkl"))
