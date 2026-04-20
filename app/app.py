@@ -106,6 +106,17 @@ with st.container():
 
         slope = st.selectbox("Slope", ["flat", "upsloping"])
 
+        cp = st.selectbox("Chest Pain Type", [
+            "typical angina",
+            "atypical angina",
+            "non-anginal"
+        ])
+
+        restecg = st.selectbox("Rest ECG", [
+            "normal",
+            "st-t abnormality"
+        ])
+
 # ======================
 # PREDICT BUTTON
 # ======================
