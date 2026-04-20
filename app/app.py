@@ -68,6 +68,10 @@ st.sidebar.write("""
 # ======================
 # INPUT FORM (🔥 major UX upgrade)
 # ======================
+# ======================
+# INPUT FORM
+# ======================
+
 with st.container():
 
     st.markdown("## 🧑‍⚕️ Patient Details")
@@ -81,45 +85,26 @@ with st.container():
             st.info("Model trained on adult population (29+). Interpret results cautiously.")
         elif age > 80:
             st.info("Very high age values may be underrepresented in training data.")
+
         sex = st.selectbox("Sex", ["Male", "Female"])
+
         trestbps = st.slider("Resting BP", 90, 200, 120)
 
+    with col2:
         chol = st.slider("Cholesterol", 120, 560, 200)
 
         thalch = st.slider("Max Heart Rate", 70, 200, 150)
 
         oldpeak = st.slider("Oldpeak", 0.0, 6.5, 1.0)
 
-    with col2:
-        chol = st.slider("Cholesterol",
-            int(df.chol.min()),
-            int(df.chol.max()),
-            int(df.chol.median())
-        )
-        thalch = st.slider("Max Heart Rate",
-            int(df.thalch.min()),
-            int(df.thalch.max()),
-            int(df.thalch.median())
-        )
-        oldpeak = st.slider("Oldpeak",
-            float(df.oldpeak.min()),
-            float(df.oldpeak.max()),
-            float(df.oldpeak.median())
-        )
-
     with col3:
         fbs = st.selectbox("Fasting Blood Sugar >120", ["No", "Yes"])
         fbs = 1 if fbs == "Yes" else 0
-        exang = st.selectbox("Exercise Angina", [0, 1])
+
+        exang = st.selectbox("Exercise Angina", ["No", "Yes"])
+        exang = 1 if exang == "Yes" else 0
+
         slope = st.selectbox("Slope", ["flat", "upsloping"])
-
-    cp = st.selectbox("Chest Pain Type", [
-        "typical angina", "atypical angina", "non-anginal"
-    ])
-
-    restecg = st.selectbox("Rest ECG", [
-        "normal", "st-t abnormality"
-    ])
 
 # ======================
 # PREDICT BUTTON
