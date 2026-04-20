@@ -19,7 +19,7 @@ st.set_page_config(
 # LOAD MODEL
 # ======================
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-df = pd.read_csv(os.path.join(base_dir, "data", "heart_large_cleaned.csv"))
+
 model = joblib.load(os.path.join(base_dir, "model", "lr_model.pkl"))
 scaler = joblib.load(os.path.join(base_dir, "model", "scaler.pkl"))
 feature_names = joblib.load(os.path.join(base_dir, "model", "features.pkl"))
@@ -82,11 +82,13 @@ with st.container():
         elif age > 80:
             st.info("Very high age values may be underrepresented in training data.")
         sex = st.selectbox("Sex", ["Male", "Female"])
-        trestbps = st.slider("Resting BP",
-            int(df.trestbps.min()),
-            int(df.trestbps.max()),
-            int(df.trestbps.median())
-        )
+        trestbps = st.slider("Resting BP", 90, 200, 120)
+
+        chol = st.slider("Cholesterol", 120, 560, 200)
+
+        thalch = st.slider("Max Heart Rate", 70, 200, 150)
+
+        oldpeak = st.slider("Oldpeak", 0.0, 6.5, 1.0)
 
     with col2:
         chol = st.slider("Cholesterol",
